@@ -9,6 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^3.1.4"
+    "compression": "^1.7.3",
+    "debug": "^4.0.1",
+    "express": "^4.16.3",
+    "hbs": "^4.0.1",
+    "http-errors": "^1.7.1",
+    "mongodb": "^3.1.4",
+    "morgan": "^1.9.1"
   }
 }
