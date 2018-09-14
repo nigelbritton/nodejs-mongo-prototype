@@ -9,7 +9,7 @@ var applicationStatus = {
     version: require('../package.json').version,
     name: require('../package.json').name,
     port: process.env.SERVER_PORT || 3000,
-    environment: process.env.NODE_ENV || 'dev',
+    environment: process.env.NODE_ENV || 'development',
     started: new Date(),
     pagesRender: [],
     crashLog: []
@@ -34,6 +34,5 @@ if (cluster.isMaster) {
     debug('Started: ' + applicationStatus.started);
     debug('Running environment: ' + applicationStatus.environment);
     debug('Listening on port: ' + applicationStatus.port);
-    debug('');
     const app = require('./app')(applicationStatus);
 }

@@ -59,7 +59,6 @@ module.exports = function(applicationStatus) {
 
     app.listen(applicationStatus.port, function () {
         debug('Accepting connections on port: ' + applicationStatus.port);
-        debug('');
 
         /*let postObject = Core.getPostObject();
         let userObject = Core.getUserObject();
