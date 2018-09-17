@@ -5,6 +5,7 @@
 const MongoDB = require('mongodb');
 
 const Meta = require('./core-meta');
+const Database = require('./core-database');
 
 const Post = {
 
@@ -47,8 +48,20 @@ const Post = {
         return Meta.deleteMetadata( 'post', postId );
     },
 
+    /**
+     *
+     * @param postObject
+     */
     insertPost: function ( postObject ) {
-        postObject = this.parseArgs(postObject, this.getPostObject());
+        postObject = Post.parseArgs(postObject, this.getPostObject());
+        Database.connect()
+            .then(function () {
+                Database.selectDatabase('blog');
+            })
+            .then(function() {
+                delete postObject._id;
+                Database.addDocument('rg_posts', postObject);
+            })
     },
 
     updatePost: function ( postObject ) {

@@ -13,10 +13,11 @@ module.exports = function(applicationStatus) {
     const path = require('path');
 
     const Core = require('./lib/core');
+    const RoutingAdmin = require('./lib/core-routing');
 
     const app = express();
 
-    const cachesettings = { week: 604800, day: 86400, hour: 3600 };
+    const cacheSettings = { week: 604800, day: 86400, hour: 3600 };
 
     hbs.registerPartials(__dirname + '/views/partials');
 
@@ -28,7 +29,7 @@ module.exports = function(applicationStatus) {
     app.use(express.urlencoded({ extended: false }));
     // app.use(cookieParser());
     app.use(compression());
-    app.use(express.static(path.join(__dirname, 'public'), { maxAge: cachesettings.week }));
+    app.use(express.static(path.join(__dirname, 'public'), { maxAge: cacheSettings.week }));
 
     app.use(function (req, res, next) {
         res.removeHeader("x-powered-by");
@@ -36,13 +37,14 @@ module.exports = function(applicationStatus) {
         res.setHeader('X-Content-Type-Options' , 'nosniff' );
         res.setHeader('X-Permitted-Cross-Domain-Policies' , 'none' );
         res.setHeader('X-XSS-Protection' , '1; mode=block' );
-        res.setHeader('Cache-Control', 'public, max-age=' + cachesettings.hour);
+        res.setHeader('Cache-Control', 'public, max-age=' + cacheSettings.hour);
         next();
     });
 
     /**
      * routes
      */
+    app.use('/admin', RoutingAdmin);
 
 
 
@@ -65,6 +67,10 @@ module.exports = function(applicationStatus) {
         console.log(postObject);
         console.log(userObject);
         console.log(Core.encryptMD5('testing'));*/
+
+        /*Core.insertPost({
+            postTitle: 'Hello World!'
+        });*/
 
     });
 

@@ -3,6 +3,7 @@
  */
 
 const MongoClient = require('mongodb').MongoClient;
+const debug = require('debug')('node-mongo-prototype');
 
 const Utilities = require('./core-utilities');
 
@@ -12,11 +13,13 @@ const Database = {
     client: null,
 
     connect: function(uri, db, coll) {
+        let environmentVariables = Utilities.getEnvironmentVariables();
         return new Promise(function(resolve, reject) {
             if (Database.db) {
                 // Connection already established
                 resolve();
             } else {
+                Database.uri = environmentVariables.databaseUrl;
                 MongoClient.connect(Database.uri, { useNewUrlParser: true }, function (err, client) {
                     if (err) {
                         console.log("Error connecting: " + err.message);
@@ -82,15 +85,15 @@ const Database = {
         return new Promise(function (resolve, reject) {
             Database.db.collection(coll, { strict: false }, function(error, collection) {
                 if (error) {
-                    console.log("Could not access collection: " + error.message);
+                    debug("Could not access collection: " + error.message);
                     reject(error.message);
                 } else {
                     collection.insertOne(document, {w: "majority"})
                         .then(function(result) {
-                            console.log('Document added: ' + new Date().getTime());
+                            debug('Document added: ' + new Date().getTime());
                             resolve(result);
                         }, function(err) {
-                            console.log("Insert failed: " + err.message);
+                            debug("Insert failed: " + err.message);
                             reject(err.message);
                         });
                 }
