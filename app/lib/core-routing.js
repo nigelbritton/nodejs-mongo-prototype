@@ -3,16 +3,19 @@
  */
 
 const express = require('express'),
+    createError = require('http-errors'),
     debug = require('debug')('node-mongo-prototype:routing'),
     router = express.Router();
 
 const Core = require('./core');
 
 router.get('/', function (req, res, next) {
-    Core.insertPost({
+    /*Core.insertPost({
         postTitle: 'Hello World! ' + new Date().getTime()
+    });*/
+    res.render('admin/dashboard', {
+
     });
-    res.send({});
 });
 
 /**
@@ -89,5 +92,12 @@ router.get('/options-reading', function (req, res, next) {
 router.get('/options-media', function (req, res, next) {
     res.send({});
 });
+
+
+router.use(function(req, res, next) {
+    next(createError(404));
+});
+
+
 
 module.exports = router;

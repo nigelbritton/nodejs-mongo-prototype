@@ -1,0 +1,179 @@
+<div id="rgwrap">
+    <div id="adminmenumain">
+        <div id="adminmenuback"></div>
+        <div id="adminmenuwrap">
+            <ul id="adminmenu">
+
+            </ul>
+        </div>
+    </div>
+    <div id="rgcontent">
+        <div id="rgadminbar"></div>
+        <div id="rgbody">
+            <div id="rgbody-content">
+                <div id="screen-meta"></div>
+                <div id="screen-meta-links" style="display: none;">
+                    <div id="contextual-help-link-wrap" class="hide-if-no-js screen-meta-toggle">
+                        <button type="button" id="contextual-help-link" class="button show-settings" aria-controls="contextual-help-wrap" aria-expanded="false">Help</button>
+                    </div>
+                    <div id="screen-options-link-wrap" class="hide-if-no-js screen-meta-toggle">
+                        <button type="button" id="show-settings-link" class="button show-settings" aria-controls="screen-options-wrap" aria-expanded="false">Screen Options</button>
+                    </div>
+                </div>
+                <div class="wrap">
+                    <h1>Dashboard</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    html.rg-toolbar {
+        padding-top: 32px;
+    }
+    body {
+        background: #f1f1f1;
+        color: #444;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+        font-size: 13px;
+        line-height: 1.4em;
+        min-width: 600px;
+    }
+    button, input, select, textarea {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+    }
+    .rg-core-ui .button,
+    .rg-core-ui .button-primary,
+    .rg-core-ui .button-secondary {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 13px;
+        line-height: 26px;
+        height: 28px;
+        margin: 0;
+        padding: 0 10px 1px;
+        cursor: pointer;
+        border-width: 1px;
+        border-style: solid;
+        -webkit-appearance: none;
+        border-radius: 3px;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+    .rg-core-ui .button,
+    .rg-core-ui .button-secondary {
+        color: #555;
+        border-color: #ccc;
+        background: #f7f7f7;
+        box-shadow: 0 1px 0 #ccc;
+        vertical-align: top;
+    }
+    #screen-meta-links .show-settings {
+        border: 0;
+        background: 0 0;
+        border-radius: 0;
+        color: #72777c;
+        line-height: 1.7;
+        padding: 3px 6px 3px 16px;
+    }
+    #rgwrap {
+        height: auto;
+        min-height: 100%;
+        width: 100%;
+        position: relative;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+    #adminmenuback {
+        position: fixed;
+        top: 0;
+        bottom: -120px;
+        z-index: 1;
+        width: 160px;
+        background-color: #23282d;
+    }
+    #adminmenuwrap {
+        position: relative;
+        float: left;
+        z-index: 9990;
+        width: 160px;
+        background-color: #23282d;
+    }
+    #adminmenu {
+        clear: left;
+        margin: 12px 0;
+        padding: 0;
+        list-style: none;
+    }
+    #rgcontent {
+        height: 100%;
+        padding-left: 20px;
+        margin-left: 160px;
+    }
+    #rgadminbar {
+        direction: ltr;
+        color: #ccc;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+        height: 32px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-width: 600px;
+        z-index: 99999;
+        background: #23282d;
+    }
+    #rgadminbar, #rgadminbar * {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 32px;
+    }
+    #rgbody {
+        position: relative;
+    }
+    #rgbody-content {
+        padding-bottom: 65px;
+        float: left;
+        width: 100%;
+        overflow: visible!important;
+    }
+    #screen-meta {
+        margin: 0 20px -1px 0;
+        position: relative;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-top: none;
+        box-shadow: 0 1px 0 rgba(0,0,0,.025);
+    }
+    #screen-meta-links {
+        margin: 0 20px 0 0;
+    }
+    #screen-meta-links .screen-meta-toggle {
+        position: relative;
+        top: 0;
+    }
+    #contextual-help-link-wrap, #screen-options-link-wrap {
+        float: right;
+        height: 28px;
+        margin: 0 0 0 6px;
+        border: 1px solid #ddd;
+        border-top: none;
+        background: #fff;
+        box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+    }
+    #screen-meta {
+        display: none;
+    }
+    .wrap {
+        margin: 10px 20px 0 2px;
+    }
+    .wrap h1, .wrap>h2:first-child {
+        font-size: 23px;
+        font-weight: 400;
+        margin: 0;
+        padding: 9px 0 4px;
+        line-height: 29px;
+    }
+</style>
