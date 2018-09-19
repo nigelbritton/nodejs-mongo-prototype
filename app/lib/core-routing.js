@@ -13,6 +13,12 @@ router.get('/', function (req, res, next) {
     /*Core.insertPost({
         postTitle: 'Hello World! ' + new Date().getTime()
     });*/
+    Core.getPosts({})
+        .then(function (results) {
+            console.log(results);
+        }).catch(function (e) {
+            console.log(e);
+        });
     res.render('admin/dashboard', {
 
     });

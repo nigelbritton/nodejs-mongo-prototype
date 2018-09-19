@@ -50,6 +50,49 @@ const Post = {
 
     /**
      *
+     */
+    getPost: function (postObject) {
+
+    },
+
+    /**
+     *
+     */
+    getPosts: function (searchQuery) {
+        let query = Post.parseArgs(searchQuery, {
+            postPerPage: 5,
+            offset: 0,
+            category: '',
+            categoryName: '',
+            orderBy: '',
+            order: '',
+            include: '',
+            exclude: '',
+            metaKey: '',
+            metaValue: '',
+            postType: 'post'
+        });
+
+        return new Promise(function (resolve, reject) {
+            Database.connect()
+                .then(function () {
+                    Database.selectDatabase('blog');
+                })
+                .then(function () {
+                    if (!Database.db) reject(Error('no database'));
+                    Database.db.collection('rg_posts').find().limit(query.postPerPage).toArray(function (err, result) {
+                        if (err) throw err;
+                        resolve(result);
+                    });
+                })
+                .catch(function (e) {
+                    reject(e);
+                });
+        });
+    },
+
+    /**
+     *
      * @param postObject
      */
     insertPost: function ( postObject ) {
@@ -66,6 +109,10 @@ const Post = {
 
     updatePost: function ( postObject ) {
         postObject = this.parseArgs(postObject, this.getPostObject());
+    },
+
+    getPages: function () {
+
     },
 
     /**
@@ -124,6 +171,8 @@ module.exports = {
     addPostMeta: Post.addPostMeta,
     getPostMeta: Post.getPostMeta,
     updatePostMeta: Post.updatePostMeta,
+    deletePostMeta: Post.deletePostMeta,
+    getPosts: Post.getPosts,
     insertPost: Post.insertPost,
     updatePost: Post.updatePost
 };

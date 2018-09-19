@@ -20,6 +20,7 @@ module.exports = {
     getPostMeta: Post.getPostMeta,
     updatePostMeta: Post.updatePostMeta,
     deletePostMeta: Post.deletePostMeta,
+    getPosts: Post.getPosts,
     insertPost: Post.insertPost,
     updatePost: Post.updatePost,
 
