@@ -2,7 +2,8 @@
  *
  */
 
-const MongoDB = require('mongodb');
+const MongoDB = require('mongodb'),
+    debug = require('debug')('node-mongo-prototype:routing');
 
 const Meta = require('./core-meta');
 const Database = require('./core-database');
@@ -52,7 +53,32 @@ const Post = {
      *
      */
     getPost: function (postObject) {
+        let postId = '';
+        if (typeof (postObject) === 'string') {
+            postId = postObject;
+        } else if (typeof (postObject) === 'object' && postObject['_id']) {
+            postId = postObject['_id'];
+        }
 
+        postId = MongoDB.ObjectId(postId);
+
+        return new Promise(function (resolve, reject) {
+            Database.connect()
+                .then(function () {
+                    // debug('Database.selectDatabase()');
+                    Database.selectDatabase('blog');
+                })
+                .then(function () {
+                    // debug('Database.db.collection()');
+                    Database.selectCollection('rg_posts').find({_id: postId}).toArray(function (err, result) {
+                        if (err) throw err;
+                        resolve(result[0]);
+                    });
+                })
+                .catch(function (e) {
+                    reject(e);
+                });
+        });
     },
 
     /**
@@ -76,11 +102,12 @@ const Post = {
         return new Promise(function (resolve, reject) {
             Database.connect()
                 .then(function () {
+                    // debug('Database.selectDatabase()');
                     Database.selectDatabase('blog');
                 })
                 .then(function () {
-                    if (!Database.db) reject(Error('no database'));
-                    Database.db.collection('rg_posts').find().limit(query.postPerPage).toArray(function (err, result) {
+                    // debug('Database.db.collection()');
+                    Database.selectCollection('rg_posts').find().limit(query.postPerPage).toArray(function (err, result) {
                         if (err) throw err;
                         resolve(result);
                     });
@@ -172,6 +199,7 @@ module.exports = {
     getPostMeta: Post.getPostMeta,
     updatePostMeta: Post.updatePostMeta,
     deletePostMeta: Post.deletePostMeta,
+    getPost: Post.getPost,
     getPosts: Post.getPosts,
     insertPost: Post.insertPost,
     updatePost: Post.updatePost

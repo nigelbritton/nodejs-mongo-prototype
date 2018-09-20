@@ -22,6 +22,47 @@
                 </div>
                 <div class="wrap">
                     <h1>Dashboard</h1>
+
+                    <table class="wp-list-table widefat fixed striped posts">
+                        <thead>
+                            <tr>
+                                <td class="check-column"><input type="checkbox" /></td>
+                                <th id="title" class="column-title">Title</th>
+                                <th id="author" class="column-author">Author</th>
+                                <th id="categories" class="column-categories">Categories</th>
+                                <th id="tags" class="column-tags">Tags</th>
+                                <th id="comments" class="column-comments">#</th>
+                                <th id="date" class="column-date">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {{#each postArrayList}}
+                            <tr>
+                                <td class="check-column"><input type="checkbox" /></td>
+                                <td class="column-title">
+                                    <a href="/admin/post/?post={{this._id}}&action=edit">{{this.postTitle}}</a>
+                                </td>
+                                <td class="column-author">-</td>
+                                <td class="column-categories">-</td>
+                                <td class="column-tags">-</td>
+                                <td class="column-comments">-</td>
+                                <td class="column-date">{{this.postDate}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="check-column"><input type="checkbox" /></td>
+                                <th class="column-title">Title</th>
+                                <th class="column-author">Author</th>
+                                <th class="column-categories">Categories</th>
+                                <th class="column-tags">Tags</th>
+                                <th class="column-comments">#</th>
+                                <th class="column-date">Date</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
                 </div>
             </div>
         </div>
@@ -175,5 +216,34 @@
         margin: 0;
         padding: 9px 0 4px;
         line-height: 29px;
+    }
+    .widefat {
+        background: #fff;
+        border-spacing: 0;
+        width: 100%;
+        clear: both;
+        margin: 0;
+    }
+    .widefat thead td, .widefat thead th {
+        border-bottom: 1px solid #e1e1e1;
+    }
+    .widefat td, .widefat th {
+        padding: 8px 10px;
+    }
+    .widefat tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+    .widefat tfoot td, .widefat tfoot th {
+        border-top: 1px solid #e1e1e1;
+        border-bottom: none;
+    }
+    .check-column {
+        width: 32px;
+    }
+    .fixed .column-author, .fixed .column-date, .fixed .column-format, .fixed .column-links, .fixed .column-parent, .fixed .column-posts {
+        width: 10%;
+    }
+    .fixed .column-categories, .fixed .column-rel, .fixed .column-response, .fixed .column-role, .fixed .column-tags {
+        width: 15%;
     }
 </style>

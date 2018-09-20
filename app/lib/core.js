@@ -20,6 +20,7 @@ module.exports = {
     getPostMeta: Post.getPostMeta,
     updatePostMeta: Post.updatePostMeta,
     deletePostMeta: Post.deletePostMeta,
+    getPost: Post.getPost,
     getPosts: Post.getPosts,
     insertPost: Post.insertPost,
     updatePost: Post.updatePost,
@@ -29,6 +30,7 @@ module.exports = {
     getAttachmentThumbUrl: Media.getAttachmentThumbUrl,
     getAttachmentUrl: Media.getAttachmentUrl,
     getAttachmentMetadata: Media.getAttachmentMetadata,
+    getThePostThumbnail: Media.getThePostThumbnail,
 
     getUserObject: User.getUserObject,
     addUserMeta: User.addUserMeta,

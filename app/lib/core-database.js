@@ -47,8 +47,9 @@ const Database = {
 
     selectCollection: function(coll) {
         if (Database.db) {
-            Database.db.collection(coll);
+            return Database.db.collection(coll);
         }
+        return false;
     },
 
     close: function() {
@@ -99,7 +100,11 @@ const Database = {
                 }
             })
         });
-    }
+    },
+
+    queryPosts: function (searchQuery) {
+        return false;
+    },
 
 };
 

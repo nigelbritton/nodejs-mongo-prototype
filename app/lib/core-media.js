@@ -17,7 +17,10 @@ const Media = {
     },
     getAttachmentMetadata: function () {
         return {};
-    }
+    },
+    getThePostThumbnail: function () {
+        return {};
+    },
 };
 
 module.exports = Media;

@@ -13,15 +13,20 @@ router.get('/', function (req, res, next) {
     /*Core.insertPost({
         postTitle: 'Hello World! ' + new Date().getTime()
     });*/
-    Core.getPosts({})
+    /*Core.getPost('5ba0f768cd0099375c0cf8bd')
         .then(function (results) {
             console.log(results);
         }).catch(function (e) {
             console.log(e);
+        });*/
+    Core.getPosts({})
+        .then(function (results) {
+            res.render('admin/dashboard', {
+                postArrayList: results
+            });
+        }).catch(function (e) {
+            console.log(e);
         });
-    res.render('admin/dashboard', {
-
-    });
 });
 
 /**
