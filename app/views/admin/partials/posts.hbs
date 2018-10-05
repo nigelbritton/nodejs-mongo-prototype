@@ -1,0 +1,39 @@
+<table class="wp-list-table widefat fixed striped posts">
+    <thead>
+    <tr>
+        <td class="check-column"><input type="checkbox" /></td>
+        <th id="title" class="column-title">Title</th>
+        <th id="author" class="column-author">Author</th>
+        <th id="categories" class="column-categories">Categories</th>
+        <th id="tags" class="column-tags">Tags</th>
+        <th id="comments" class="column-comments">#</th>
+        <th id="date" class="column-date">Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each postArrayList}}
+        <tr>
+            <td class="check-column"><input type="checkbox" /></td>
+            <td class="column-title">
+                <a href="/admin/post/?post={{this._id}}&action=edit">{{this.postTitle}}</a>
+            </td>
+            <td class="column-author">-</td>
+            <td class="column-categories">-</td>
+            <td class="column-tags">-</td>
+            <td class="column-comments">-</td>
+            <td class="column-date">{{this.postDate}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td class="check-column"><input type="checkbox" /></td>
+        <th class="column-title">Title</th>
+        <th class="column-author">Author</th>
+        <th class="column-categories">Categories</th>
+        <th class="column-tags">Tags</th>
+        <th class="column-comments">#</th>
+        <th class="column-date">Date</th>
+    </tr>
+    </tfoot>
+</table>

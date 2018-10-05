@@ -10,23 +10,9 @@ const express = require('express'),
 const Core = require('./core');
 
 router.get('/', function (req, res, next) {
-    /*Core.insertPost({
-        postTitle: 'Hello World! ' + new Date().getTime()
-    });*/
-    /*Core.getPost('5ba0f768cd0099375c0cf8bd')
-        .then(function (results) {
-            console.log(results);
-        }).catch(function (e) {
-            console.log(e);
-        });*/
-    Core.getPosts({})
-        .then(function (results) {
-            res.render('admin/dashboard', {
-                postArrayList: results
-            });
-        }).catch(function (e) {
-            console.log(e);
-        });
+    res.render('admin/dashboard', {
+        pageTitle: 'Dashboard'
+    });
 });
 
 /**
@@ -34,7 +20,18 @@ router.get('/', function (req, res, next) {
  */
 
 router.get('/edit', function (req, res, next) {
-    res.send({});
+    let pageTitle;
+    switch (req.query.post_type) {
+        case 'page':
+            pageTitle = 'Pages';
+            break;
+        default:
+            pageTitle = 'Posts';
+            break;
+    }
+    res.render('admin/dashboard', {
+        pageTitle: pageTitle
+    });
 });
 
 router.get('/post-new', function (req, res, next) {

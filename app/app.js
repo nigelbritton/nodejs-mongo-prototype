@@ -41,6 +41,8 @@ module.exports = function(applicationStatus) {
         next();
     });
 
+    app.locals.getPosts = Core.getPosts;
+
     /**
      * routes
      */
